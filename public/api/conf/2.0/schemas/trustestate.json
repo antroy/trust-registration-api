@@ -504,7 +504,7 @@
           "type": "string"
         },
         "title": {
-          "type": "string"
+          "$ref": "#/definitions/titleType"
         }
       },
       "type": "object"
@@ -771,12 +771,17 @@
           "$ref": "#/definitions/correspondenceAddressType"
         },
         "dateOfBirth": {
+          "description": "Date with specific format YYYY-MM-DD",
+          "maxLength": 10,
+          "pattern": "^([\\d]{4,4}\\-[\\d]{2,2}\\-[\\d]{2,2})$",
           "type": "string"
         },
         "familyName": {
+          "maxLength": 47,
           "type": "string"
         },
         "givenName": {
+          "maxLength": 25,
           "type": "string"
         },
         "isUkNationalOrNonUkWithANino": {
@@ -786,6 +791,7 @@
           "type": "string"
         },
         "otherName": {
+          "maxLength": 25,
           "type": "string"
         },
         "passportOrIdCard": {
@@ -807,10 +813,21 @@
           "$ref": "#/definitions/telephoneNumberType"
         },
         "title": {
+          "$ref": "#/definitions/titleType"
+        },
+        "email": {
+          "pattern":"^[a-z0-9]+(\\\\.[_a-z0-9]+)*@[a-z0-9-]+(\\\\.[a-z0-9-]+)*(\\\\.[a-z]{2,15})$",
           "type": "string"
         }
       },
-      "type": "object"
+      "type": "object",
+      "required" : [
+        "givenName",
+        "familyName",
+        "title",
+        "dateOfBirth",
+        "telephoneNumber"
+      ]
     },
     "interVivoTrustType": {
       "description": "Inter Vivo Trust Type",
@@ -1151,13 +1168,33 @@
       "type": "object"
     },
     "telephoneNumberType": {
-      "description": "telephone Number Type",
-      "maxLength": 19,
+      "description": "Telephone numbers",
+      "maxLength": 24,
+      "minLength": 1,
+      "pattern": "^([ #\\(-\\*/-9A-Z]+)$",
+      "type": "string"
+    },
+    "titleType": {
+      "description": "Codes for possible name titles. Possible values are:\n\t\t\tCode   Title\n\t\t\t----   -----\n\t\t\t0001   Mr\n\t\t\t0002   Mrs\n\t\t\t0003   Miss\n\t\t\t0004   Ms\n\t\t\t0005   Dr\n\t\t\t0006   Sir\n\t\t\t0007   Rev\n\t\t\t0008   Personal Representative of\n\t\t\t0009   Professor\n\t\t\t0010   Lord\n\t\t\t0011   Lady\n\t\t\t0012   Dame\n\t\t\t",
+      "enum": [
+        "0001",
+        "0002",
+        "0003",
+        "0004",
+        "0005",
+        "0006",
+        "0007",
+        "0008",
+        "0009",
+        "0010",
+        "0011",
+        "0012"
+      ],
       "type": "string"
     },
     "trustType": {
       "description": "Main Trust Type",
-      "additionalProperties": true,
+      "additionalProperties": false,
       "properties": {
         "commencementDate": {
           "type": "string"

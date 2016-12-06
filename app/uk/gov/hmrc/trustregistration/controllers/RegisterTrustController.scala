@@ -26,7 +26,6 @@ import uk.gov.hmrc.trustregistration.utils.{FailedValidation, JsonSchemaValidato
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
-
 trait RegisterTrustController extends ApplicationBaseController {
 
   val jsonSchemaValidator: JsonSchemaValidator

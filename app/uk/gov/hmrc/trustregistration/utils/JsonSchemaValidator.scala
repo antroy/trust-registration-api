@@ -59,6 +59,7 @@ trait JsonSchemaValidator {
         if (ex.getMessage.contains("Duplicate")) {
           FailedValidation("Duplicated Elements", 0, Nil)
         } else {
+          println(ex.getMessage)
           FailedValidation("Not JSON",0,Nil)
         }
       }
