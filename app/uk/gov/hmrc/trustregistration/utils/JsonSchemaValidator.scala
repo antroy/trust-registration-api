@@ -26,13 +26,12 @@ import com.github.fge.jsonschema.main.{JsonSchema, JsonSchemaFactory}
 import scala.collection.JavaConverters._
 import scala.util.{Success, Try}
 
-
 trait JsonSchemaValidator {
+
 
   private val JsonErrorMessageTag = "message"
   private val JsonErrorInstanceTag = "instance"
   private val JsonErrorPointerTag = "pointer"
-
 
   val schema: JsonNode
 
@@ -65,7 +64,6 @@ trait JsonSchemaValidator {
       }
     }
   }
-
 
   private def getValidationErrors(validationOutput: ProcessingReport): Seq[TrustsValidationError] = {
     val validationErrors: Seq[TrustsValidationError] = validationOutput.iterator.asScala.toList.filter(m => m.getLogLevel == ERROR).map(m => {

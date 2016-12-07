@@ -174,7 +174,7 @@
       },
       "type": "object"
     },
-    "correspondenceAddressType": {
+    "correspondenceAddressType1": {
       "description": "Correspondence Address Type",
       "additionalProperties": false,
       "properties": {
@@ -763,7 +763,7 @@
       },
       "type": "object"
     },
-    "individualType": {
+    "individualType1": {
       "description": "Individual Type",
       "additionalProperties": false,
       "properties": {
@@ -890,9 +890,19 @@
         },
         "individual": {
           "$ref": "#/definitions/individualType"
+        },
+        "telephoneNumber" : {
+          "$ref": "#/definitions/telephoneNumberType"
+        },
+        "email" : {
+          "$ref": "#/definitions/emailType"
         }
       },
-      "type": "object"
+      "type": "object",
+      "oneOf": [
+        {"required" : ["company"]},
+        {"required" : ["individual"]}
+      ]
     },
     "legalityType": {
       "description": "Legality Type",
@@ -917,14 +927,9 @@
       "description": "Monetary Assets Type",
       "additionalProperties": false,
       "properties": {
-        "monetaryAsset": {
-          "type": "array",
-          "items": {
-            "value": {
-              "type": "number"
-            }
-          }
-        }
+              "value": {
+                "type": "number"
+              }
       },
       "type": "object"
     },
@@ -1174,6 +1179,11 @@
       "pattern": "^([ #\\(-\\*/-9A-Z]+)$",
       "type": "string"
     },
+    "emailType": {
+      "description": "email Address",
+
+      "type": "string"
+    },
     "titleType": {
       "description": "Codes for possible name titles. Possible values are:\n\t\t\tCode   Title\n\t\t\t----   -----\n\t\t\t0001   Mr\n\t\t\t0002   Mrs\n\t\t\t0003   Miss\n\t\t\t0004   Ms\n\t\t\t0005   Dr\n\t\t\t0006   Sir\n\t\t\t0007   Rev\n\t\t\t0008   Personal Representative of\n\t\t\t0009   Professor\n\t\t\t0010   Lord\n\t\t\t0011   Lady\n\t\t\t0012   Dame\n\t\t\t",
       "enum": [
@@ -1338,6 +1348,248 @@
         }
       },
       "type": "object"
+    },
+
+
+    "correspondenceAddressType" : {
+      "description": "Composite Individual Type",
+      "additionalProperties": false,
+      "properties": {
+        "addressNonGB": {
+          "$ref": "#/definitions/correspondenceAddressNonGBType"
+        },
+        "addressGB": {
+          "$ref": "#/definitions/correspondenceAddressGBType"
+        }
+      },
+      "type": "object",
+      "oneOf": [
+        {"required" : ["addressNonGB"]},
+        {"required" : ["addressGB"]}
+      ]
+    },
+    "correspondenceAddressNonGBType": {
+      "description": "Correspondence Address Non GB Type",
+      "additionalProperties": false,
+      "properties": {
+
+        "line1": {
+          "maxLength": 28,
+          "type": "string"
+        },
+        "line2": {
+          "maxLength": 28,
+          "type": "string"
+        },
+        "line3": {
+          "maxLength": 28,
+          "type": "string"
+        },
+        "countryCode": {
+          "$ref": "#/definitions/countryCodeType"
+        }
+      },
+      "type": "object",
+      "required" : [
+        "line1",
+        "countryCode"
+      ]
+    },
+    "correspondenceAddressGBType": {
+      "description": "Correspondence Address Type",
+      "additionalProperties": false,
+      "properties": {
+        "line1": {
+          "maxLength": 28,
+          "type": "string"
+        },
+        "line2": {
+          "maxLength": 28,
+          "type": "string"
+        },
+        "line3": {
+          "maxLength": 28,
+          "type": "string"
+        },
+        "line4": {
+          "maxLength": 17,
+          "type": "string"
+        },
+        "postalCode": {
+          "$ref": "#/definitions/postalCodeType"
+        }
+      },
+      "type": "object",
+      "required" : [
+        "line1",
+        "postalCode"
+      ]
+    },
+
+    "individualType" : {
+      "description": "Composite Individual Type",
+      "additionalProperties": false,
+      "properties": {
+        "individualNonNinoNonGB": {
+          "$ref": "#/definitions/individualNonNinoNonGBType"
+        },
+        "individualNonNinoGB": {
+          "$ref": "#/definitions/individualNonNinoGBType"
+        },
+        "individualNino": {
+          "$ref": "#/definitions/individualNinoType"
+        }
+      },
+      "type": "object",
+      "oneOf": [
+        {"required" : ["individualNonNinoNonGB"]},
+        {"required" : ["individualNonNinoGB"]},
+        {"required" : ["individualNino"]}
+      ]
+    },
+    "individualNonNinoNonGBType": {
+      "description": "individual Non-Nino Non-GB Type",
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "$ref": "#/definitions/titleType"
+        },
+        "familyName": {
+          "maxLength": 47,
+          "type": "string"
+        },
+        "otherName": {
+          "maxLength": 25,
+          "type": "string"
+        },
+        "givenName": {
+          "maxLength": 25,
+          "type": "string"
+        },
+        "correspondenceAddress": {
+          "$ref": "#/definitions/correspondenceAddressNonGBType"
+        },
+        "dateOfBirth": {
+          "description": "Date with specific format YYYY-MM-DD",
+          "pattern": "^([\\d]{4,4}\\-[\\d]{2,2}\\-[\\d]{2,2})$",
+          "type": "string"
+        },
+        "passportOrIdCard": {
+          "$ref": "#/definitions/passportOrIdCardType"
+        }
+      },
+      "type": "object",
+      "required" : [
+        "givenName",
+        "familyName",
+        "title",
+        "dateOfBirth",
+        "correspondenceAddress"
+      ]
+    },
+    "individualNonNinoGBType": {
+      "description": "individual Non-Nino GB Type",
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "$ref": "#/definitions/titleType"
+        },
+        "familyName": {
+          "maxLength": 47,
+          "type": "string"
+        },
+        "otherName": {
+          "maxLength": 25,
+          "type": "string"
+        },
+        "givenName": {
+          "maxLength": 25,
+          "type": "string"
+        },
+        "correspondenceAddress": {
+          "$ref": "#/definitions/correspondenceAddressGBType"
+        },
+        "dateOfBirth": {
+          "description": "Date with specific format YYYY-MM-DD",
+          "pattern": "^([\\d]{4,4}\\-[\\d]{2,2}\\-[\\d]{2,2})$",
+          "type": "string"
+        },
+        "passportOrIdCard": {
+          "$ref": "#/definitions/passportOrIdCardType"
+        }
+      },
+      "type": "object",
+      "required" : [
+        "givenName",
+        "familyName",
+        "title",
+        "dateOfBirth",
+        "correspondenceAddress"
+      ]
+    },
+    "individualNinoType": {
+      "description": "individual Nino Type",
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "$ref": "#/definitions/titleType"
+        },
+        "familyName": {
+          "maxLength": 47,
+          "type": "string"
+        },
+        "otherName": {
+          "maxLength": 25,
+          "type": "string"
+        },
+        "givenName": {
+          "maxLength": 25,
+          "type": "string"
+        },
+        "nino": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "description": "Date with specific format YYYY-MM-DD",
+          "pattern": "^([\\d]{4,4}\\-[\\d]{2,2}\\-[\\d]{2,2})$",
+          "type": "string"
+        },
+        "passportOrIdCard": {
+          "$ref": "#/definitions/passportOrIdCardType"
+        }
+      },
+      "type": "object",
+      "required" : [
+        "givenName",
+        "familyName",
+        "title",
+        "dateOfBirth",
+        "nino"
+      ]
+    },
+
+    "passportOrIdCardType": {
+      "additionalProperties": false,
+      "properties": {
+        "countryOfIssue": {
+          "$ref": "#/definitions/countryCodeType"
+        },
+        "expiryDate": {
+          "description": "Expiry Date with specific format YYYY-MM-DD",
+          "pattern": "^([\\d]{4,4}\\-[\\d]{2,2}\\-[\\d]{2,2})$",
+          "type": "string"
+        },
+        "referenceNumber": {
+          "maxLength": 30,
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "required" : [
+        "countryOfIssue",
+        "expiryDate",
+        "referenceNumber"
+      ]
     }
   }
 }
