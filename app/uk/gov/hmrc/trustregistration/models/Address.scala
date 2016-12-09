@@ -16,7 +16,8 @@
 
 package uk.gov.hmrc.trustregistration.models
 
-import play.api.libs.json.Json
+import play.api.libs.json.{JsPath, Json, Reads}
+import play.api.libs.functional.syntax._
 
 case class Address (
                      line1: String,
@@ -27,6 +28,14 @@ case class Address (
                      countryCode: Option[String] = None)
 
 object Address {
+  implicit val addressReads: Reads[Address] = (
+    (JsPath \\ "line1").read[String] and
+    (JsPath \\ "line2").readNullable[String] and
+    (JsPath \\ "line3").readNullable[String] and
+    (JsPath \\ "line4").readNullable[String] and
+    (JsPath \\ "postalCode").readNullable[String] and
+    (JsPath \\ "countryCode").readNullable[String]
+  )(Address.apply _)
 
-  implicit val formats = Json.format[Address]
+  implicit val addressWrites = Json.writes[Address]
 }
