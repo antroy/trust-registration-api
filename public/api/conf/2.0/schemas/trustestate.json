@@ -1,5 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://uk/gov/hmrc/trustregistration/raml/schemas/trustestate.json",
   "type": "object",
   "additionalProperties": false,
   "properties": {
@@ -1207,6 +1208,8 @@
       "additionalProperties": false,
       "properties": {
         "commencementDate": {
+          "description": "Date with specific format YYYY-MM-DD",
+          "pattern": "^([\\d]{4,4}\\-[\\d]{2,2}\\-[\\d]{2,2})$",
           "type": "string"
         },
         "correspondenceAddress": {
@@ -1349,7 +1352,6 @@
       },
       "type": "object"
     },
-
 
     "correspondenceAddressType" : {
       "description": "Composite Individual Type",
