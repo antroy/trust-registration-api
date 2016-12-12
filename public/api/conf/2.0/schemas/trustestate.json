@@ -1174,10 +1174,9 @@
       "type": "object"
     },
     "telephoneNumberType": {
-      "description": "Telephone numbers",
-      "maxLength": 24,
-      "minLength": 1,
-      "pattern": "^([ #\\(-\\*/-9A-Z]+)$",
+      "description": "telephone Number Type",
+      "maxLength": 19,
+      "pattern": "^(\\+)?([0-9\\(\\)\\ -]){1,}$",
       "type": "string"
     },
     "emailType": {
