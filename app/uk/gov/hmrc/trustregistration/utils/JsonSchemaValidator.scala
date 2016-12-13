@@ -28,7 +28,6 @@ import scala.util.{Success, Try}
 
 trait JsonSchemaValidator {
 
-
   private val JsonErrorMessageTag = "message"
   private val JsonErrorInstanceTag = "instance"
   private val JsonErrorPointerTag = "pointer"
