@@ -21,7 +21,18 @@ import play.api.libs.json.Json
 case class Protectors(individuals: Option[List[Individual]] = None, companies: Option[List[Company]] = None) {
   val noMoreThanTwoProtectors = (individuals.getOrElse(Nil).size + companies.getOrElse(Nil).size <= 2)
 
-  require(noMoreThanTwoProtectors, "Must have no more than two protectors")
+  require(noMoreThanTwoProtectors,
+    s"""{\"message\": \"Invalid Json\",
+         \"code\": 0,
+         \"validationErrors\": [
+         {
+           \"message\": \"object must have no more than two protectors ([\\\"protectors\\\"])\",
+           \"location\": \"/trustEstate/trust"
+         }
+         ]
+       }""".stripMargin
+  )
+
 }
 
 object Protectors{
