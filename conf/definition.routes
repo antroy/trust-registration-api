@@ -1,4 +1,4 @@
 
-GET        /api/definition                                       @uk.gov.hmrc.api.controllers.DocumentationController.definition()
+GET        /api/definition                     @uk.gov.hmrc.trustregistration.controllers.DocumentationController.definition()
 
-GET        /api/documentation/:version/:endpointName             @uk.gov.hmrc.api.controllers.DocumentationController.documentation(version: String,endpointName: String)       
+GET        /api/conf/:version/*endpointName    @uk.gov.hmrc.trustregistration.controllers.DocumentationController.raml(version: String,endpointName: String)
