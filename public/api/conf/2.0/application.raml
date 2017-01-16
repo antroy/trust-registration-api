@@ -1,246 +1,256 @@
 #%RAML 1.0
+
 title: Trust Registration Service
 description: An API for registering and updating trusts.
-version: 1.0
+version: 2.0
 protocols: [ HTTPS ]
 baseUri: https://api.service.hmrc.gov.uk/
-mediaType: application/hal+json
-resourceTypes:
-  base: !include resourceTypes/base.raml
-types:
-  Estate: !include schemas/trust.json#/definitions/estate
-  Trust: !include schemas/trust.json#/definitions/trust
-  Trustees: !include schemas/trust.json#/definitions/trustees
-  Beneficiaries: !include schemas/trust.json#/definitions/beneficiaries
-  Settlors: !include schemas/trust.json#/definitions/settlors
-  Protectors: !include schemas/trust.json#/definitions/protectors
-  LeadTrusteeIndividual: !include schemas/trust.json#/definitions/leadTrustee/properties/individual
-  LeadTrusteeCompany: !include schemas/trust.json#/definitions/leadTrustee/company
-  NaturalPersons: !include schemas/trust.json#/definitions/naturalPeople
-  NoChange: !include schemas/no-change.json
-  Close: !include schemas/close.json
+
+documentation:
+ - title: Overview
+   content: !include docs/overview.md
+ - title: Versioning
+   content: !include http://api-documentation-raml-frontend.service/api-documentation/assets/common/docs/versioning.md
+ - title: Errors
+   content: !include http://api-documentation-raml-frontend.service/api-documentation/assets/common/docs/errors.md
+
+mediaType: [ application/json, application/hal+json ]
+
+uses:
+  sec: http://api-documentation-raml-frontend.service/api-documentation/assets/common/modules/securitySchemes.raml
+  headers: http://api-documentation-raml-frontend.service/api-documentation/assets/common/modules/headers.raml
+  annotations: http://api-documentation-raml-frontend.service/api-documentation/assets/common/modules/annotations.raml
+  traits: modules/traits.raml
+
 /trusts:
-  type: base
   get:
     displayName: My Trusts
     description: Retrieves all the trusts available to the user
-    responses:
-      200:
-        body:
-          application/json:
-            type: Trust
-            #example: !include examples/trust.json
-  post:
-    displayName: Full Trust Registration
-    description: Submits an entire set of data for a trust
-    body:
-      application/json:
-        type: Trust
-        #example: !include examples/trust.json
-  /{identifier}:
-    type: base
-    uriParameters:
-      utr:
-        type: string
-        displayName: The SA UTR of the trust.
-    get:
-      displayName: Get Trust
-      description: Retrieves a specific trust
-    /close:
-      type: base
-      put:
-        displayName: Close Trust
-        description: Closes the specified trust
-        responses:
-          200:
-            body:
-              application/json:
-                type: Close
-                example: !include examples/close.json
-    /lead-trustee-individual:
-      type: base
-      get:
-        displayName: Get Lead Trustee Individual
-        description: Retrieves the information for an lead Trustee as an individual
-        responses:
-          200:
-            body:
-              application/json:
-                type: LeadTrusteeIndividual
-                example: !include examples/lead-trustee-individual.json
-      put:
-        displayName: Update Lead Trustee Individual
-        description: Updates the information for an lead Trustee as an individual
-        body:
-          application/json:
-            type: LeadTrusteeIndividual
-            example: !include examples/lead-trustee-individual.json
-    /lead-trustee-company:
-      type: base
-      get:
-        displayName: Get Lead Trustee Company
-        description: Retrieves the information for an lead Trustee as an company
-        responses:
-          200:
-            body:
-              application/json:
-                type: LeadTrusteeCompany
-                #example: !include examples/lead-trustee-company.json
-      put:
-        displayName: Update Lead Trustee Company
-        description: Updates the information for an lead Trustee as an company
-        body:
-          application/json:
-            type: LeadTrusteeCompany
-            #example: !include examples/lead-trustee-company.json
-    /trustees:
-      type: base
-      get:
-        displayName: Get Trustees
-        description: Retrieves all the trustees of the Trust
-        responses:
-          200:
-            body:
-              application/json:
-                type: Trustees
-                #example: !include examples/trustees.json
-      put:
-        displayName: Update Trustees
-        description: Updates all the trustees of the Trust
-        body:
-          application/json:
-              type: Trustees
-              #example: !include examples/trustees.json
-    /beneficiaries:
-      type: base
-      get:
-        displayName: Get Beneficiaries
-        description: Retrieves all the beneficiaries of the Trust
-        responses:
-          200:
-            body:
-              application/json:
-                type: Beneficiaries
-                #example: !include examples/beneficiaries.json
-      put:
-        displayName: Update Beneficiaries
-        description: Updates all the beneficiaries of the Trust
-        body:
-          application/json:
-              type: Beneficiaries
-              #example: !include examples/beneficiaries.json
-    /settlors:
-      type: base
-      get:
-        displayName: Get Settlors
-        description: Retrieves all the settlors for the Trust
-        responses:
-          200:
-            body:
-              application/json:
-                type: Settlors
-                #example: !include examples/settlors.json
-      put:
-        displayName: Update Beneficiaries
-        description: Updates all the settlors for the Trust
-        body:
-          application/json:
-              type: Settlors
-              #example: !include examples/settlors.json
-    /natural-persons:
-      type: base
-      get:
-        displayName: Get Natural Persons
-        description: Retrieves all the "natural persons" for the Trust
-        responses:
-          200:
-            body:
-              application/json:
-                type: NaturalPersons
-                #example: !include examples/natural-people.json
-      put:
-        displayName: Update Natural Persons
-        description: Updates all the "natural persons" for the Trust
-        body:
-          application/json:
-              type: NaturalPersons
-              #example: !include examples/natural-people.json
-    /protectors:
-      type: base
-      get:
-        displayName: Get Protectors
-        description: Retrieves all the protectors for the Trust
-        responses:
-          200:
-            body:
-              application/json:
-                type: Protectors
-                #example: !include examples/protectors.json
-      put:
-        displayName: Update Protectors
-        description: Updates all the protectors for the Trust
-        body:
-          application/json:
-            type: Protectors
-            #example: !include examples/protectors.json
-    /no-change:
-      type: base
-      put:
-        displayName: No Change
-        description: Confirms no change to the trust
-        responses:
-          200:
-            body:
-              application/json:
-                type: NoChange
-                #example: !include examples/no-change.json
-  /lead-trustee-individual:
-    type: base
-    post:
-      displayName: Register Lead Trustee Individual
-      description: Registers a lead Trustee as an individual
-      body:
-        application/json:
-          type: LeadTrusteeIndividual
-          #example: !include examples/lead-trustee-individual.json
-  /lead-trustee-company:
-    type: base
-    post:
-      displayName: Register Lead Trustee Company
-      description: Registers a lead Trustee as an company
-      body:
-        application/json:
-          type: LeadTrusteeCompany
-          #example: !include examples/lead-trustee-company.json
-/estates:
-  type: base
-  get:
-    displayName: My Estates
-    description: Retrieves all the estates available to the user
-    responses:
-      200:
-        body:
-          application/json:
-            type: Estate
-            #example: !include examples/estate.json
-  post:
-    displayName: Register Estate
-    description: Submits an entire set of data for a estate
-  /{identifier}:
-    type: base
-    uriParameters:
-      utr:
-        type: string
-        displayName: The SA UTR of the estate.
-    get:
-      displayName: Get Estate
-      description: Retrieve a specific estate
-      responses:
-        200:
-          body:
-            application/json:
-              type: Estate
-              #example: !include examples/estate.json
-    delete:
-      displayName: Delete Estate
-      description: Deletes a specific estate
+    is:
+      - headers.acceptHeader
+      - traits.commonSuccesses:
+          responseSchema: !include "schemas/trust.json"
+          successExample: !include "examples/trust.json"
+
+    (annotations.scope): "read:trusts-estates"
+    securedBy: [ sec.oauth_2_0: { scopes: [ "read:trusts-estates" ] } ]
+#    responses:
+#      200:
+#        body:
+#          application/json:
+#            type: string #Trust
+#            #example: !include examples/trust.json
+#  post:
+#    displayName: Full Trust Registration
+#    description: Submits an entire set of data for a trust
+#    body:
+#      application/json:
+#        type: Trust
+#        #example: !include examples/trust.json
+#  /{identifier}:
+#    type: base
+#    uriParameters:
+#      utr:
+#        type: string
+#        displayName: The SA UTR of the trust.
+#    get:
+#      displayName: Get Trust
+#      description: Retrieves a specific trust
+#    /close:
+#      type: base
+#      put:
+#        displayName: Close Trust
+#        description: Closes the specified trust
+#        responses:
+#          200:
+#            body:
+#              application/json:
+#                type: Close
+#                example: !include examples/close.json
+#    /lead-trustee-individual:
+#      type: base
+#      get:
+#        displayName: Get Lead Trustee Individual
+#        description: Retrieves the information for an lead Trustee as an individual
+#        responses:
+#          200:
+#            body:
+#              application/json:
+#                type: LeadTrusteeIndividual
+#                example: !include examples/lead-trustee-individual.json
+#      put:
+#        displayName: Update Lead Trustee Individual
+#        description: Updates the information for an lead Trustee as an individual
+#        body:
+#          application/json:
+#            type: LeadTrusteeIndividual
+#            example: !include examples/lead-trustee-individual.json
+#    /lead-trustee-company:
+#      type: base
+#      get:
+#        displayName: Get Lead Trustee Company
+#        description: Retrieves the information for an lead Trustee as an company
+#        responses:
+#          200:
+#            body:
+#              application/json:
+#                type: LeadTrusteeCompany
+#                #example: !include examples/lead-trustee-company.json
+#      put:
+#        displayName: Update Lead Trustee Company
+#        description: Updates the information for an lead Trustee as an company
+#        body:
+#          application/json:
+#            type: LeadTrusteeCompany
+#            #example: !include examples/lead-trustee-company.json
+#    /trustees:
+#      type: base
+#      get:
+#        displayName: Get Trustees
+#        description: Retrieves all the trustees of the Trust
+#        responses:
+#          200:
+#            body:
+#              application/json:
+#                type: Trustees
+#                #example: !include examples/trustees.json
+#      put:
+#        displayName: Update Trustees
+#        description: Updates all the trustees of the Trust
+#        body:
+#          application/json:
+#              type: Trustees
+#              #example: !include examples/trustees.json
+#    /beneficiaries:
+#      type: base
+#      get:
+#        displayName: Get Beneficiaries
+#        description: Retrieves all the beneficiaries of the Trust
+#        responses:
+#          200:
+#            body:
+#              application/json:
+#                type: Beneficiaries
+#                #example: !include examples/beneficiaries.json
+#      put:
+#        displayName: Update Beneficiaries
+#        description: Updates all the beneficiaries of the Trust
+#        body:
+#          application/json:
+#              type: Beneficiaries
+#              #example: !include examples/beneficiaries.json
+#    /settlors:
+#      type: base
+#      get:
+#        displayName: Get Settlors
+#        description: Retrieves all the settlors for the Trust
+#        responses:
+#          200:
+#            body:
+#              application/json:
+#                type: Settlors
+#                #example: !include examples/settlors.json
+#      put:
+#        displayName: Update Beneficiaries
+#        description: Updates all the settlors for the Trust
+#        body:
+#          application/json:
+#              type: Settlors
+#              #example: !include examples/settlors.json
+#    /natural-persons:
+#      type: base
+#      get:
+#        displayName: Get Natural Persons
+#        description: Retrieves all the "natural persons" for the Trust
+#        responses:
+#          200:
+#            body:
+#              application/json:
+#                type: NaturalPersons
+#                #example: !include examples/natural-people.json
+#      put:
+#        displayName: Update Natural Persons
+#        description: Updates all the "natural persons" for the Trust
+#        body:
+#          application/json:
+#              type: NaturalPersons
+#              #example: !include examples/natural-people.json
+#    /protectors:
+#      type: base
+#      get:
+#        displayName: Get Protectors
+#        description: Retrieves all the protectors for the Trust
+#        responses:
+#          200:
+#            body:
+#              application/json:
+#                type: Protectors
+#                #example: !include examples/protectors.json
+#      put:
+#        displayName: Update Protectors
+#        description: Updates all the protectors for the Trust
+#        body:
+#          application/json:
+#            type: Protectors
+#            #example: !include examples/protectors.json
+#    /no-change:
+#      type: base
+#      put:
+#        displayName: No Change
+#        description: Confirms no change to the trust
+#        responses:
+#          200:
+#            body:
+#              application/json:
+#                type: NoChange
+#                #example: !include examples/no-change.json
+#  /lead-trustee-individual:
+#    type: base
+#    post:
+#      displayName: Register Lead Trustee Individual
+#      description: Registers a lead Trustee as an individual
+#      body:
+#        application/json:
+#          type: LeadTrusteeIndividual
+#          #example: !include examples/lead-trustee-individual.json
+#  /lead-trustee-company:
+#    type: base
+#    post:
+#      displayName: Register Lead Trustee Company
+#      description: Registers a lead Trustee as an company
+#      body:
+#        application/json:
+#          type: LeadTrusteeCompany
+#          #example: !include examples/lead-trustee-company.json
+#/estates:
+#  type: base
+#  get:
+#    displayName: My Estates
+#    description: Retrieves all the estates available to the user
+#    responses:
+#      200:
+#        body:
+#          application/json:
+#            type: Estate
+#            #example: !include examples/estate.json
+#  post:
+#    displayName: Register Estate
+#    description: Submits an entire set of data for a estate
+#  /{identifier}:
+#    type: base
+#    uriParameters:
+#      utr:
+#        type: string
+#        displayName: The SA UTR of the estate.
+#    get:
+#      displayName: Get Estate
+#      description: Retrieve a specific estate
+#      responses:
+#        200:
+#          body:
+#            application/json:
+#              type: Estate
+#              #example: !include examples/estate.json
+#    delete:
+#      displayName: Delete Estate
+#      description: Deletes a specific estate

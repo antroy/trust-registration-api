@@ -8,20 +8,24 @@
       "line3": "Address Line 3",
       "line4": "Address Line 4",
       "postalCode": "NE1 2BR",
-      "country": "FR"
+      "countryCode": "FR"
     },
     "telephoneNumber": "0191 357 1596",
     "currentYear": "2016",
     "commencementDate": "2016-12-25",
     "legality": {
-      "governingCountry": "UK",
-      "administrationCountry": "UK",
-      "previousOffshoreCountry": "",
+      "governingCountryCode": "GB",
+      "administrationCountryCode": "GB",
+      "previousOffshoreCountryCode": "GB",
       "isEstablishedUnderScottishLaw": false
     },
     "isTrustUkResident": true,
     "isSchedule5A": false,
-    "nonResidentType": "N/A",
+    "nonResidentType": "0001",
+    "settlors": {
+      "companies": [],
+      "individuals": []
+    },
     "leadTrustee": {
       "individual": {
         "title": "Mr",
@@ -30,10 +34,10 @@
         "familyName": "Doe",
         "dateOfBirth": "1989-12-31",
         "nino": "WA123456A",
-        "passport": {
-          "identifier": "b12344b23b45",
+        "passportOrIdCard": {
+          "referenceNumber": "b12344b23b45",
           "expiryDate": "2018-12-25",
-          "countryOfIssue": "UK"
+          "countryOfIssue": "GB"
         },
         "correspondenceAddress": {
           "isNonUkAddress": false,
@@ -42,10 +46,11 @@
           "line3": "Address Line 3",
           "line4": "Address Line 4",
           "postalCode": "NE1 2BR",
-          "country": "UK"
-        },
-        "telephoneNumber": "0191 357 1596"
-      }
+          "countryCode": "GB"
+        }
+      },
+      "email": "bob@testemail.net",
+      "telephoneNumber": "0191 357 1596"
     },
     "trustees": [
       {
@@ -55,10 +60,10 @@
         "familyName": "Doe",
         "dateOfBirth": "1989-12-31",
         "nino": "WA123456A",
-        "passport": {
-          "identifier": "b12344b23b45",
+        "passportOrIdCard": {
+          "referenceNumber": "b12344b23b45",
           "expiryDate": "2018-12-25",
-          "countryOfIssue": "UK"
+          "countryOfIssue": "GB"
         },
         "correspondenceAddress": {
           "isNonUkAddress": false,
@@ -67,7 +72,7 @@
           "line3": "Address Line 3",
           "line4": "Address Line 4",
           "postalCode": "NE1 2BR",
-          "country": "UK"
+          "countryCode": "GB"
         },
         "telephoneNumber": "0191 357 1596"
       }
@@ -81,10 +86,10 @@
           "familyName": "Doe",
           "dateOfBirth": "1989-12-31",
           "nino": "WA123456A",
-          "passport": {
-            "identifier": "b12344b23b45",
+          "passportOrIdCard": {
+            "referenceNumber": "b12344b23b45",
             "expiryDate": "2018-12-25",
-            "countryOfIssue": "UK"
+            "countryOfIssue": "GB"
           },
           "correspondenceAddress": {
             "isNonUkAddress": false,
@@ -93,9 +98,8 @@
             "line3": "Address Line 3",
             "line4": "Address Line 4",
             "postalCode": "NE1 2BR",
-            "country": "UK"
-          },
-          "telephoneNumber": "0191 357 1596"
+            "countryCode": "GB"
+          }
         },
         {
           "title": "Mr",
@@ -104,10 +108,10 @@
           "familyName": "Doe",
           "dateOfBirth": "1989-12-31",
           "nino": "WA123456A",
-          "passport": {
-            "identifier": "b12344b23b45",
+          "passportOrIdCard": {
+            "referenceNumber": "b12344b23b45",
             "expiryDate": "2018-12-25",
-            "countryOfIssue": "UK"
+            "countryOfIssue": "GB"
           },
           "correspondenceAddress": {
             "isNonUkAddress": false,
@@ -116,9 +120,8 @@
             "line3": "Address Line 3",
             "line4": "Address Line 4",
             "postalCode": "NE1 2BR",
-            "country": "UK"
-          },
-          "telephoneNumber": "0191 357 1596"
+            "countryCode": "GB"
+          }
         }
       ],
       "companies": [
@@ -132,7 +135,7 @@
             "line3": "Address Line 3",
             "line4": "Address Line 4",
             "postalCode": "NE1 2BR",
-            "country": "UK"
+            "countryCode": "GB"
           },
           "telephoneNumber": "0191 357 1596"
         }
@@ -146,10 +149,10 @@
         "familyName": "Doe",
         "dateOfBirth": "1989-12-31",
         "nino": "WA123456A",
-        "passport": {
-          "identifier": "b12344b23b45",
+        "passportOrIdCard": {
+          "referenceNumber": "b12344b23b45",
           "expiryDate": "2018-12-25",
-          "countryOfIssue": "UK"
+          "countryOfIssue": "GB"
         },
         "correspondenceAddress": {
           "isNonUkAddress": false,
@@ -158,7 +161,7 @@
           "line3": "Address Line 3",
           "line4": "Address Line 4",
           "postalCode": "NE1 2BR",
-          "country": "UK"
+          "countryCode": "GB"
         },
         "telephoneNumber": "0191 357 1596"
       }
@@ -168,8 +171,8 @@
       "givenName": "Joe",
       "otherName": "John",
       "familyName": "Doe",
-      "capacity": "Executor",
-      "date": "2016-12-25"
+      "capacity": "0004",
+      "dateOfDeclaration": "2016-12-25"
     },
     "willIntestacyTrust": {
       "assets": {
@@ -186,7 +189,7 @@
               "line3": "Address Line 3",
               "line4": "Address Line 4",
               "postalCode": "NE1 2BR",
-              "country": "UK"
+              "countryCode": "GB"
             },
             "propertyLandValue": 20000000,
             "propertyLandEvalDate": "2016-12-25"
@@ -213,7 +216,7 @@
               "line3": "Address Line 3",
               "line4": "Address Line 4",
               "postalCode": "NE1 2BR",
-              "country": "UK"
+              "countryCode": "GB"
             },
             "value": 1000000,
             "lastValuationDate": "2016-12-25"
@@ -237,10 +240,10 @@
               "familyName": "Doe",
               "dateOfBirth": "1989-12-31",
               "nino": "WA123456A",
-              "passport": {
-                "identifier": "b12344b23b45",
+              "passportOrIdCard": {
+                "referenceNumber": "b12344b23b45",
                 "expiryDate": "2018-12-25",
-                "countryOfIssue": "UK"
+                "countryOfIssue": "GB"
               },
               "correspondenceAddress": {
                 "isNonUkAddress": false,
@@ -249,7 +252,7 @@
                 "line3": "Address Line 3",
                 "line4": "Address Line 4",
                 "postalCode": "NE1 2BR",
-                "country": "UK"
+                "countryCode": "GB"
               },
               "telephoneNumber": "0191 357 1596"
             },
@@ -271,7 +274,7 @@
               "line3": "Address Line 3",
               "line4": "Address Line 4",
               "postalCode": "NE1 2BR",
-              "country": "UK"
+              "countryCode": "GB"
             },
             "income": {
               "isIncomeAtTrusteeDiscretion": true,
@@ -289,7 +292,7 @@
               "line3": "Address Line 3",
               "line4": "Address Line 4",
               "postalCode": "NE1 2BR",
-              "country": "UK"
+              "countryCode": "GB"
             },
             "income": {
               "isIncomeAtTrusteeDiscretion": false,
@@ -305,10 +308,10 @@
         "familyName": "Doe",
         "dateOfBirth": "1989-12-31",
         "nino": "WA123456A",
-        "passport": {
-          "identifier": "b12344b23b45",
+        "passportOrIdCard": {
+          "referenceNumber": "b12344b23b45",
           "expiryDate": "2018-12-25",
-          "countryOfIssue": "UK"
+          "countryOfIssue": "GB"
         },
         "correspondenceAddress": {
           "isNonUkAddress": false,
@@ -317,7 +320,7 @@
           "line3": "Address Line 3",
           "line4": "Address Line 4",
           "postalCode": "NE1 2BR",
-          "country": "UK"
+          "countryCode": "GB"
         },
         "telephoneNumber": "0191 357 1596"
       },
