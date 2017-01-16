@@ -34,28 +34,27 @@ uses:
 
     (annotations.scope): "read:trusts-estates"
     securedBy: [ sec.oauth_2_0: { scopes: [ "read:trusts-estates" ] } ]
-#    responses:
-#      200:
-#        body:
-#          application/json:
-#            type: string #Trust
-#            #example: !include examples/trust.json
-#  post:
-#    displayName: Full Trust Registration
-#    description: Submits an entire set of data for a trust
-#    body:
-#      application/json:
-#        type: Trust
-#        #example: !include examples/trust.json
-#  /{identifier}:
-#    type: base
-#    uriParameters:
-#      utr:
-#        type: string
-#        displayName: The SA UTR of the trust.
-#    get:
-#      displayName: Get Trust
-#      description: Retrieves a specific trust
+  post:
+    displayName: Full Trust Registration
+    description: Submits an entire set of data for a trust
+    body:
+      application/json:
+        type: !include "schemas/trust.json"
+        example: !include examples/trust.json
+  /{identifier}:
+    uriParameters:
+      utr:
+        type: string
+        displayName: The SA UTR of the trust.
+    get:
+      displayName: Get Trust
+      description: Retrieves a specific trust
+      is:
+        - headers.acceptHeader
+        - traits.commonSuccesses:
+            responseSchema: string
+            successExample: ""
+
 #    /close:
 #      type: base
 #      put:
