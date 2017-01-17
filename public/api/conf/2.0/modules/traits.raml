@@ -1,0 +1,58 @@
+#%RAML 1.0 Library
+
+uses:
+  types: http://api-documentation-raml-frontend.service/api-documentation/assets/common/modules/types.raml
+
+traits:
+  commonSuccesses:
+    responses:
+      200:
+        body:
+          application/json:
+            type: <<responseSchema>>
+            examples:
+              example-1:
+                value: <<successExample>>
+  commonErrors:
+    responses:
+      401:
+        body:
+          application/json:
+            type: types.errorResponse
+            examples:
+              Unauthorized:
+                description: Unauthorized
+                value:
+                  code: INVALID_CREDENTIALS
+              MissingCredentials:
+                description: Authentication information is not provided
+                value:
+                  code: MISSING_CREDENTIALS
+      404:
+        body:
+          application/json:
+            type: types.errorResponse
+            examples:
+              ResourceNotFound:
+                description: Resource Not Found
+                value:
+                  code: NOT_FOUND
+      406:
+        body:
+          application/json:
+            type: types.errorResponse
+            examples:
+              AcceptHeaderInvalid:
+                description: Accept header invalid
+                value:
+                  code: ACCEPT_HEADER_INVALID
+      500:
+        body:
+          application/json:
+            type: types.errorResponse
+            examples:
+              InternalServerError:
+                description: Internal Server Error
+                value:
+                  code: INTERNAL_SERVER_ERROR
+
