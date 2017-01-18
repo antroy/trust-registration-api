@@ -1,4 +1,6 @@
 {
+  "leadTrustee": {
+    "individual": {
       "title": "Mr",
       "givenName": "Joe",
       "otherName": "John",
@@ -18,7 +20,9 @@
         "line4": "Address Line 4",
         "postalCode": "NE1 2BR",
         "country": "UK"
-      },
-      "telephoneNumber": "0191 357 1596"
-
+      }
+    },
+    "telephoneNumber": "0191 357 1596",
+    "email": "someone@example.eg"
+  }
 }

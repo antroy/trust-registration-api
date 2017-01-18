@@ -24,7 +24,7 @@ uses:
 
 /trusts:
   get:
-    displayName: My Trusts
+    displayName: Get all trusts
     description: Retrieves all the trusts available to the user
     is:
       - headers.acceptHeader
@@ -32,51 +32,63 @@ uses:
           responseSchema: !include "schemas/trust.json"
           successExample: !include "examples/trust.json"
 
-    (annotations.scope): "read:trusts-estates"
-    securedBy: [ sec.oauth_2_0: { scopes: [ "read:trusts-estates" ] } ]
+    (annotations.scope): "read:trusts-and-estates"
+    securedBy: [ sec.oauth_2_0: { scopes: [ "read:trusts-and-estates" ] } ]
   post:
     displayName: Full Trust Registration
     description: Submits an entire set of data for a trust
+    is:
+      - headers.acceptHeader
+      - traits.commonSuccesses:
+          responseSchema: !include "schemas/trn.json"
+          successExample: !include "examples/trn.json"
+    (annotations.scope): "write:trusts-and-estates"
+    securedBy: [ sec.oauth_2_0: { scopes: [ "write:trusts-and-estates" ] } ]
+
     body:
       application/json:
         type: !include "schemas/trust.json"
         example: !include examples/trust.json
-  /{identifier}:
+  /{utr}:
     uriParameters:
       utr:
+        description: The 10 digit self-assessment UTR for the individual.
         type: string
-        displayName: The SA UTR of the trust.
+        example: "2234567890"
     get:
       displayName: Get Trust
       description: Retrieves a specific trust
       is:
         - headers.acceptHeader
         - traits.commonSuccesses:
-            responseSchema: string
-            successExample: ""
+            responseSchema: !include "schemas/trust.json"
+            successExample: !include "examples/trust.json"
+      (annotations.scope): "read:trusts-and-estates"
+      securedBy: [ sec.oauth_2_0: { scopes: [ "read:trusts-and-estates" ] } ]
 
-#    /close:
-#      type: base
-#      put:
-#        displayName: Close Trust
-#        description: Closes the specified trust
-#        responses:
-#          200:
-#            body:
-#              application/json:
-#                type: Close
-#                example: !include examples/close.json
-#    /lead-trustee-individual:
-#      type: base
-#      get:
-#        displayName: Get Lead Trustee Individual
-#        description: Retrieves the information for an lead Trustee as an individual
-#        responses:
-#          200:
-#            body:
-#              application/json:
-#                type: LeadTrusteeIndividual
-#                example: !include examples/lead-trustee-individual.json
+    /close:
+      put:
+        displayName: Close trust
+        description: Closes the specified trust
+        is:
+          - headers.acceptHeader
+          - traits.commonSuccesses:
+              responseSchema: !include "schemas/trn.json"
+              successExample: !include "examples/trn.json"
+        (annotations.scope): "write:trusts-and-estates"
+        securedBy: [ sec.oauth_2_0: { scopes: [ "write:trusts-and-estates" ] } ]
+
+    /lead-trustee-individual:
+      get:
+        displayName: Get lead trustee individual
+        description: Retrieves the information for an lead trustee as an individual
+        is:
+          - headers.acceptHeader
+          #- traits.commonSuccesses:
+          #    responseSchema: !include "schemas/lead-trustee-individual.json"
+          #    successExample: !include "examples/lead-trustee-individual.json"
+        (annotations.scope): "read:trusts-and-estates"
+        securedBy: [ sec.oauth_2_0: { scopes: [ "read:trusts-and-estates" ] } ]
 #      put:
 #        displayName: Update Lead Trustee Individual
 #        description: Updates the information for an lead Trustee as an individual

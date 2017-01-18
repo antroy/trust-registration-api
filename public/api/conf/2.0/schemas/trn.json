@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "trn": {
+      "type": "string",
+      "description": "Trust ID number"
+    }
+  }
+}
+
