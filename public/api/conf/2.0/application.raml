@@ -20,7 +20,6 @@ uses:
   sec: http://api-documentation-raml-frontend.service/api-documentation/assets/common/modules/securitySchemes.raml
   headers: http://api-documentation-raml-frontend.service/api-documentation/assets/common/modules/headers.raml
   annotations: http://api-documentation-raml-frontend.service/api-documentation/assets/common/modules/annotations.raml
-  traits: modules/traits.raml
 
 /trusts:
   get:
@@ -103,31 +102,42 @@ uses:
               application/json:
                 type: !include "schemas/lead-trustee-individual.json"
                 example: !include "examples/lead-trustee-individual.json"
-#      put:
-#        displayName: Update Lead Trustee Individual
-#        description: Updates the information for an lead Trustee as an individual
-#        body:
-#          application/json:
-#            type: LeadTrusteeIndividual
-#            example: !include examples/lead-trustee-individual.json
-#    /lead-trustee-company:
-#      type: base
-#      get:
-#        displayName: Get Lead Trustee Company
-#        description: Retrieves the information for an lead Trustee as an company
-#        responses:
-#          200:
-#            body:
-#              application/json:
-#                type: LeadTrusteeCompany
-#                #example: !include examples/lead-trustee-company.json
-#      put:
-#        displayName: Update Lead Trustee Company
-#        description: Updates the information for an lead Trustee as an company
-#        body:
-#          application/json:
-#            type: LeadTrusteeCompany
-#            #example: !include examples/lead-trustee-company.json
+      put:
+        displayName: Update Lead Trustee Individual
+        description: Updates the information for an lead Trustee as an individual
+        is:
+          - headers.acceptHeader
+        (annotations.scope): "read:trusts-and-estates"
+        securedBy: [ sec.oauth_2_0: { scopes: [ "read:trusts-and-estates" ] } ]
+        body:
+          application/json:
+            type: !include "schemas/lead-trustee-individual.json"
+            example: !include "examples/lead-trustee-individual.json"
+    /lead-trustee-company:
+      get:
+        displayName: Get lead trustee company
+        description: Retrieves the information for an lead trustee as a company
+        is:
+          - headers.acceptHeader
+        (annotations.scope): "read:trusts-and-estates"
+        securedBy: [ sec.oauth_2_0: { scopes: [ "read:trusts-and-estates" ] } ]
+        responses:
+          200:
+            body:
+              application/json:
+                type: !include "schemas/lead-trustee-company.json"
+                example: !include "examples/lead-trustee-company.json"
+      put:
+        displayName: Update Lead Trustee Company
+        description: Updates the information for an lead Trustee as a company
+        is:
+          - headers.acceptHeader
+        (annotations.scope): "read:trusts-and-estates"
+        securedBy: [ sec.oauth_2_0: { scopes: [ "read:trusts-and-estates" ] } ]
+        body:
+          application/json:
+            type: !include "schemas/lead-trustee-company.json"
+            example: !include "examples/lead-trustee-company.json"
 #    /trustees:
 #      type: base
 #      get:
@@ -279,3 +289,4 @@ uses:
 #    delete:
 #      displayName: Delete Estate
 #      description: Deletes a specific estate
+

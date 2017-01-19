@@ -2,9 +2,9 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
-    "individual": {
-      "$ref": "trust.json#/definitions/individualType"
+    "company": {
+      "$ref": "trust.json#/definitions/companyType"
     }
   },
-  "required": ["individual"]
+  "required": ["company"]
 }

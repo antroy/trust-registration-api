@@ -856,6 +856,7 @@
     "leadTrusteeType": {
       "description": "Lead Trustee Type",
       "additionalProperties": false,
+      "type": "object",
       "properties": {
         "company": {
           "$ref": "#/definitions/companyType"
