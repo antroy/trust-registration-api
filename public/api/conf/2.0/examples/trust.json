@@ -52,31 +52,32 @@
       "email": "bob@testemail.net",
       "telephoneNumber": "0191 357 1596"
     },
-    "trustees": [
-      {
-        "title": "Mr",
-        "givenName": "Joe",
-        "otherName": "John",
-        "familyName": "Doe",
-        "dateOfBirth": "1989-12-31",
-        "nino": "WA123456A",
-        "passportOrIdCard": {
-          "referenceNumber": "b12344b23b45",
-          "expiryDate": "2018-12-25",
-          "countryOfIssue": "GB"
-        },
-        "correspondenceAddress": {
-          "isNonUkAddress": false,
-          "line1": "Address Line 1",
-          "line2": "Address Line 2",
-          "line3": "Address Line 3",
-          "line4": "Address Line 4",
-          "postalCode": "NE1 2BR",
-          "countryCode": "GB"
-        },
-        "telephoneNumber": "0191 357 1596"
-      }
-    ],
+    "trustees": {
+      "individuals": [
+        {
+          "title": "Mr",
+          "givenName": "Joe",
+          "otherName": "John",
+          "familyName": "Doe",
+          "dateOfBirth": "1989-12-31",
+          "nino": "WA123456A",
+          "passportOrIdCard": {
+            "referenceNumber": "b12344b23b45",
+            "expiryDate": "2018-12-25",
+            "countryOfIssue": "GB"
+          },
+          "correspondenceAddress": {
+            "isNonUkAddress": false,
+            "line1": "Address Line 1",
+            "line2": "Address Line 2",
+            "line3": "Address Line 3",
+            "line4": "Address Line 4",
+            "postalCode": "NE1 2BR",
+            "countryCode": "GB"
+          }
+        }
+      ]
+    },
     "protectors": {
       "individuals": [
         {

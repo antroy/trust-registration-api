@@ -1249,7 +1249,7 @@
     },
     "trusteesType": {
       "description": "Trustees Type",
-      "additionalProperties": false,
+      "type": "object",
       "properties": {
         "companies": {
           "type": "array",

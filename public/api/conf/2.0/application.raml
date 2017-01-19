@@ -138,24 +138,31 @@ uses:
           application/json:
             type: !include "schemas/lead-trustee-company.json"
             example: !include "examples/lead-trustee-company.json"
-#    /trustees:
-#      type: base
-#      get:
-#        displayName: Get Trustees
-#        description: Retrieves all the trustees of the Trust
-#        responses:
-#          200:
-#            body:
-#              application/json:
-#                type: Trustees
-#                #example: !include examples/trustees.json
+    /trustees:
+      get:
+        displayName: Get Trustees
+        description: Retrieves all the trustees of the Trust
+        is:
+          - headers.acceptHeader
+        (annotations.scope): "read:trusts-and-estates"
+        securedBy: [ sec.oauth_2_0: { scopes: [ "read:trusts-and-estates" ] } ]
+        responses:
+          200:
+            body:
+              application/json:
+                type: !include "schemas/trustees.json"
+                example: !include "examples/trustees.json"
 #      put:
 #        displayName: Update Trustees
 #        description: Updates all the trustees of the Trust
+#        is:
+#          - headers.acceptHeader
+#        (annotations.scope): "read:trusts-and-estates"
+#        securedBy: [ sec.oauth_2_0: { scopes: [ "read:trusts-and-estates" ] } ]
 #        body:
 #          application/json:
-#              type: Trustees
-#              #example: !include examples/trustees.json
+#            type: !include "schemas/trustees.json"
+#            example: !include "examples/trustees.json"
 #    /beneficiaries:
 #      type: base
 #      get:

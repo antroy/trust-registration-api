@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "trustees": {
+      "$ref": "trust.json#/definitions/trusteesType"
+    }
+  },
+  "required": ["trustees"]
+}
