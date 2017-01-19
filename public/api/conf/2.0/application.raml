@@ -28,23 +28,28 @@ uses:
     description: Retrieves all the trusts available to the user
     is:
       - headers.acceptHeader
-      - traits.commonSuccesses:
-          responseSchema: !include "schemas/trust.json"
-          successExample: !include "examples/trust.json"
 
     (annotations.scope): "read:trusts-and-estates"
     securedBy: [ sec.oauth_2_0: { scopes: [ "read:trusts-and-estates" ] } ]
+    responses:
+      200:
+        body:
+          application/json:
+            type: !include "schemas/trust.json"
+            example: !include "examples/trust.json"
   post:
     displayName: Full Trust Registration
     description: Submits an entire set of data for a trust
     is:
       - headers.acceptHeader
-      - traits.commonSuccesses:
-          responseSchema: !include "schemas/trn.json"
-          successExample: !include "examples/trn.json"
     (annotations.scope): "write:trusts-and-estates"
     securedBy: [ sec.oauth_2_0: { scopes: [ "write:trusts-and-estates" ] } ]
-
+    responses:
+      200:
+        body:
+          application/json:
+            type: !include "schemas/trn.json"
+            example: !include "examples/trn.json"
     body:
       application/json:
         type: !include "schemas/trust.json"
@@ -60,11 +65,14 @@ uses:
       description: Retrieves a specific trust
       is:
         - headers.acceptHeader
-        - traits.commonSuccesses:
-            responseSchema: !include "schemas/trust.json"
-            successExample: !include "examples/trust.json"
       (annotations.scope): "read:trusts-and-estates"
       securedBy: [ sec.oauth_2_0: { scopes: [ "read:trusts-and-estates" ] } ]
+      responses:
+        200:
+          body:
+            application/json:
+              type: !include "schemas/trust.json"
+              example: !include "examples/trust.json"
 
     /close:
       put:
@@ -72,11 +80,14 @@ uses:
         description: Closes the specified trust
         is:
           - headers.acceptHeader
-          - traits.commonSuccesses:
-              responseSchema: !include "schemas/trn.json"
-              successExample: !include "examples/trn.json"
         (annotations.scope): "write:trusts-and-estates"
         securedBy: [ sec.oauth_2_0: { scopes: [ "write:trusts-and-estates" ] } ]
+        responses:
+          200:
+            body:
+              application/json:
+                type: !include "schemas/trn.json"
+                example: !include "examples/trn.json"
 
     /lead-trustee-individual:
       get:
@@ -84,9 +95,6 @@ uses:
         description: Retrieves the information for an lead trustee as an individual
         is:
           - headers.acceptHeader
-          #- traits.commonSuccesses:
-          #    responseSchema: !include "schemas/lead-trustee-individual.json"
-          #    successExample: !include "examples/lead-trustee-individual.json"
         (annotations.scope): "read:trusts-and-estates"
         securedBy: [ sec.oauth_2_0: { scopes: [ "read:trusts-and-estates" ] } ]
         responses:
