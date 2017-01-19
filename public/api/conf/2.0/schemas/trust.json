@@ -869,12 +869,7 @@
         "email" : {
           "$ref": "#/definitions/emailType"
         }
-      },
-      "type": "object",
-      "oneOf": [
-        {"required": ["individual", "telephoneNumber", "email"]},
-        {"required": ["company", "telephoneNumber", "email"]}
-      ]
+      }
     },
     "legalityType": {
       "description": "Legality Type",

@@ -89,6 +89,12 @@ uses:
           #    successExample: !include "examples/lead-trustee-individual.json"
         (annotations.scope): "read:trusts-and-estates"
         securedBy: [ sec.oauth_2_0: { scopes: [ "read:trusts-and-estates" ] } ]
+        responses:
+          200:
+            body:
+              application/json:
+                type: !include "schemas/lead-trustee-individual.json"
+                example: !include "examples/lead-trustee-individual.json"
 #      put:
 #        displayName: Update Lead Trustee Individual
 #        description: Updates the information for an lead Trustee as an individual

@@ -7,10 +7,10 @@
       "familyName": "Doe",
       "dateOfBirth": "1989-12-31",
       "nino": "WA123456A",
-      "passport": {
-        "identifier": "b12344b23b45",
+      "passportOrIdCard": {
+        "referenceNumber": "b12344b23b45",
         "expiryDate": "2018-12-25",
-        "countryOfIssue": "UK"
+        "countryOfIssue": "GB"
       },
       "correspondenceAddress": {
         "isNonUkAddress": false,
@@ -19,10 +19,10 @@
         "line3": "Address Line 3",
         "line4": "Address Line 4",
         "postalCode": "NE1 2BR",
-        "country": "UK"
+        "countryCode": "GB"
       }
     },
     "telephoneNumber": "0191 357 1596",
-    "email": "someone@example.eg"
+    "email": "someone@example.com"
   }
 }
